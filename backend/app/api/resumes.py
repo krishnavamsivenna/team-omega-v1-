@@ -160,3 +160,49 @@ def delete_resume(
     db.delete(resume)
     db.commit()
     return None
+
+@router.patch("/{resume_id}/primary", response_model=ResumeResponse)
+def set_primary_resume(
+    resume_id: int,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Sets the designated resume as primary, clearing primary status on other resumes."""
+    target_resume = db.query(Resume).filter(
+        Resume.id == resume_id,
+        Resume.user_id == current_user.id
+    ).first()
+    if not target_resume:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Resume not found.")
+
+    # Reset all user's resumes to is_primary = 0
+    db.query(Resume).filter(Resume.user_id == current_user.id).update({"is_primary": 0})
+    target_resume.is_primary = 1
+    db.commit()
+    db.refresh(target_resume)
+    return target_resume
+
+@router.patch("/{resume_id}/metadata", response_model=ResumeResponse)
+def update_resume_metadata(
+    resume_id: int,
+    payload: dict,
+    current_user: User = Depends(get_current_user),
+    db: Session = Depends(get_db)
+):
+    """Updates custom version label or target role on a resume document."""
+    resume = db.query(Resume).filter(
+        Resume.id == resume_id,
+        Resume.user_id == current_user.id
+    ).first()
+    if not resume:
+        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Resume not found.")
+
+    if "target_role" in payload:
+        resume.target_role = payload["target_role"]
+    if "version_tag" in payload:
+        resume.version_tag = payload["version_tag"]
+
+    db.commit()
+    db.refresh(resume)
+    return resume
+

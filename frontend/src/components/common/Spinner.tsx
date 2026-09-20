@@ -17,7 +17,7 @@ export const Spinner: React.FC<SpinnerProps> = ({ size = 'md', className = '', l
   return (
     <div className={`flex flex-col items-center justify-center gap-3 ${className}`}>
       <div
-        className={`${sizes[size]} rounded-full border-slate-700 border-t-indigo-500 animate-spin`}
+        className={`${sizes[size]} rounded-full border-slate-700 border-t-teal-400 animate-spin`}
         role="status"
         aria-label={label || 'Loading'}
       />

@@ -12,8 +12,8 @@ export const ScoreCard: React.FC<ScoreCardProps> = ({ breakdown }) => {
       title: 'Technical Skills Match',
       weight: '45% Weight',
       score: breakdown.hard_skills,
-      icon: <Layers className="w-4 h-4 text-indigo-400" />,
-      color: 'bg-indigo-500',
+      icon: <Layers className="w-4 h-4 text-teal-400" />,
+      color: 'bg-teal-400',
       description: 'Overlap between your skills and required role competencies',
     },
     {

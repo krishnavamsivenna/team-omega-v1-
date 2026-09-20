@@ -88,10 +88,19 @@ export const resumeAPI = {
     const { data } = await apiClient.get<Resume>(`/resumes/${id}`);
     return data;
   },
+  setPrimary: async (id: number): Promise<Resume> => {
+    const { data } = await apiClient.patch<Resume>(`/resumes/${id}/primary`);
+    return data;
+  },
+  updateMetadata: async (id: number, metadata: { target_role?: string; version_tag?: string }): Promise<Resume> => {
+    const { data } = await apiClient.patch<Resume>(`/resumes/${id}/metadata`, metadata);
+    return data;
+  },
   delete: async (id: number): Promise<void> => {
     await apiClient.delete(`/resumes/${id}`);
   },
 };
+
 
 // Analysis Endpoints
 export const analysisAPI = {
@@ -119,6 +128,48 @@ export const analysisAPI = {
   },
 };
 
+// Interview Endpoints
+export const interviewAPI = {
+  generate: async (payload: import('../types').CreateInterviewRequest): Promise<import('../types').InterviewSession> => {
+    const { data } = await apiClient.post<import('../types').InterviewSession>('/interview/generate', payload);
+    return data;
+  },
+  evaluateAnswer: async (payload: { session_id: number; question_id: number; user_answer: string }): Promise<import('../types').InterviewQuestionAnswer> => {
+    const { data } = await apiClient.post<import('../types').InterviewQuestionAnswer>('/interview/evaluate', payload);
+    return data;
+  },
+  getSession: async (sessionId: number): Promise<import('../types').InterviewSession> => {
+    const { data } = await apiClient.get<import('../types').InterviewSession>(`/interview/sessions/${sessionId}`);
+    return data;
+  },
+  getHistory: async (): Promise<import('../types').InterviewSessionSummary[]> => {
+    const { data } = await apiClient.get<import('../types').InterviewSessionSummary[]>('/interview/history');
+    return data;
+  },
+  deleteSession: async (sessionId: number): Promise<void> => {
+    await apiClient.delete(`/interview/sessions/${sessionId}`);
+  },
+};
+
+// Roadmap Endpoints
+export const roadmapAPI = {
+  generate: async (payload: import('../types').RoadmapRequest): Promise<import('../types').RoadmapResponse> => {
+    const { data } = await apiClient.post<import('../types').RoadmapResponse>('/roadmap/generate', payload);
+    return data;
+  },
+  getRoadmap: async (id: number): Promise<import('../types').RoadmapResponse> => {
+    const { data } = await apiClient.get<import('../types').RoadmapResponse>(`/roadmap/${id}`);
+    return data;
+  },
+  getHistory: async (): Promise<import('../types').RoadmapSummary[]> => {
+    const { data } = await apiClient.get<import('../types').RoadmapSummary[]>('/roadmap/history');
+    return data;
+  },
+  deleteRoadmap: async (id: number): Promise<void> => {
+    await apiClient.delete(`/roadmap/${id}`);
+  },
+};
+
 // Health Endpoint
 export const systemAPI = {
   getHealth: async () => {
@@ -126,3 +177,33 @@ export const systemAPI = {
     return data;
   },
 };
+
+// Jobs Endpoints (Level 3)
+export const jobsAPI = {
+  search: async (params?: { q?: string; remote?: boolean; experience_level?: string; skill?: string }): Promise<import('../types').JobSearchResultItem[]> => {
+    const { data } = await apiClient.get<import('../types').JobSearchResultItem[]>('/jobs/search', { params });
+    return data;
+  },
+  getSaved: async (statusFilter?: string): Promise<import('../types').JobOpportunity[]> => {
+    const { data } = await apiClient.get<import('../types').JobOpportunity[]>('/jobs/saved', {
+      params: statusFilter ? { status_filter: statusFilter } : undefined,
+    });
+    return data;
+  },
+  saveJob: async (payload: Partial<import('../types').JobOpportunity>): Promise<import('../types').JobOpportunity> => {
+    const { data } = await apiClient.post<import('../types').JobOpportunity>('/jobs/saved', payload);
+    return data;
+  },
+  updateStatus: async (
+    jobId: number,
+    payload: { status?: string; salary_range?: string; match_score?: number }
+  ): Promise<import('../types').JobOpportunity> => {
+    const { data } = await apiClient.patch<import('../types').JobOpportunity>(`/jobs/saved/${jobId}/status`, payload);
+    return data;
+  },
+  deleteJob: async (jobId: number): Promise<void> => {
+    await apiClient.delete(`/jobs/saved/${jobId}`);
+  },
+};
+
+

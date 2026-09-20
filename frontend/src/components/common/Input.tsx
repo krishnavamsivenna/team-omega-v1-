@@ -30,10 +30,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             id={inputId}
             aria-invalid={!!error}
             aria-describedby={error ? errorId : undefined}
-            className={`w-full rounded-xl bg-slate-900/90 border ${
+            className={`w-full rounded-xl bg-slate-900/90 dark:bg-[#111518] border ${
               error
                 ? 'border-rose-500 focus:border-rose-500 focus:ring-rose-500/20'
-                : 'border-slate-800 focus:border-indigo-500 focus:ring-indigo-500/20'
+                : 'border-slate-800 focus:border-teal-400 focus:ring-teal-400/20'
             } text-slate-100 placeholder-slate-500 text-sm px-3.5 py-2.5 ${
               icon ? 'pl-10' : ''
             } transition-all duration-200 focus:outline-none focus:ring-2 disabled:bg-slate-950 disabled:cursor-not-allowed ${className}`}

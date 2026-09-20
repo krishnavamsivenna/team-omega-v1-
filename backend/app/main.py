@@ -15,10 +15,20 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
-    description="OMEGA - AI Job Application & Interview Coach (Level 1 MVP Foundation)",
-    version="1.0.0",
+    description="OMEGA - AI Job Application & Interview Coach (Level 3 Hackathon Production Ready)",
+    version="3.0.0",
     lifespan=lifespan
 )
+
+# Security Headers Middleware
+@app.middleware("http")
+async def add_security_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["X-Content-Type-Options"] = "nosniff"
+    response.headers["X-Frame-Options"] = "DENY"
+    response.headers["X-XSS-Protection"] = "1; mode=block"
+    response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    return response
 
 # CORS configuration
 app.add_middleware(
@@ -45,6 +55,7 @@ async def global_exception_handler(request: Request, exc: Exception):
         }
     )
 
+
 # Mount API routes
 app.include_router(api_router, prefix=settings.API_V1_STR)
 
@@ -53,10 +64,12 @@ def root():
     return {
         "project": "OMEGA",
         "description": "AI Job Application & Interview Coach",
-        "level": 1,
+        "level": 3,
         "docs_url": "/docs",
         "health_url": f"{settings.API_V1_STR}/health"
     }
+
+
 
 if __name__ == "__main__":
     import uvicorn

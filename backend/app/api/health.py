@@ -35,6 +35,7 @@ def health_check(db: Session = Depends(get_db)):
         "ai_provider": {
             "mode": settings.AI_PROVIDER,
             "name": provider.get_provider_name(),
-            "level": "Level 1 (Baseline Deterministic NLP Foundation; Level 2 LLM Ready)"
+            "level": "Level 2 (AI Intelligence Layer: Multi-Provider with Graceful Fallback)"
         }
     }
+

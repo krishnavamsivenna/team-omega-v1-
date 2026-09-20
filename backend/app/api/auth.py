@@ -67,8 +67,18 @@ def login_demo_user(db: Session = Depends(get_db)):
         db.commit()
         db.refresh(user)
 
+    # Automatically populate realistic demo resumes, matches, interviews, and jobs
+    from app.services.demo_seeder import seed_demo_data
+    try:
+        seed_demo_data(user, db)
+    except Exception as e:
+        # Non-fatal if seeding encounters any transient condition
+        import logging
+        logging.getLogger(__name__).warning(f"Demo seeding notice: {e}")
+
     token = create_access_token({"sub": str(user.id), "email": user.email})
     return Token(access_token=token, token_type="bearer", user=user)
+
 
 @router.get("/me", response_model=UserResponse)
 def get_me(current_user: User = Depends(get_current_user)):

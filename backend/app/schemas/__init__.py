@@ -14,6 +14,24 @@ from app.schemas.analysis import (
     AnalysisResponse,
     AnalysisHistoryItem
 )
+from app.schemas.interview import (
+    CreateInterviewRequest,
+    InterviewQuestion,
+    SubmitAnswerRequest,
+    EvaluationAxis,
+    AnswerEvaluation,
+    InterviewQuestionAnswerResponse,
+    InterviewSessionResponse,
+    InterviewSessionSummary
+)
+from app.schemas.roadmap import (
+    RoadmapRequest,
+    RoadmapResource,
+    RoadmapPhase,
+    RoadmapData,
+    RoadmapResponse,
+    RoadmapSummary
+)
 
 __all__ = [
     "UserCreate",
@@ -32,4 +50,18 @@ __all__ = [
     "RecommendationItem",
     "AnalysisResponse",
     "AnalysisHistoryItem",
+    "CreateInterviewRequest",
+    "InterviewQuestion",
+    "SubmitAnswerRequest",
+    "EvaluationAxis",
+    "AnswerEvaluation",
+    "InterviewQuestionAnswerResponse",
+    "InterviewSessionResponse",
+    "InterviewSessionSummary",
+    "RoadmapRequest",
+    "RoadmapResource",
+    "RoadmapPhase",
+    "RoadmapData",
+    "RoadmapResponse",
+    "RoadmapSummary",
 ]

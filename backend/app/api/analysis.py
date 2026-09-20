@@ -98,11 +98,17 @@ def match_resume_to_job(
         bonus_skills=analysis_data.get("bonus_skills", []),
         keyword_analysis=analysis_data.get("keyword_analysis", {}),
         recommendations=analysis_data["recommendations"],
-        provider_name=provider.get_provider_name()
+        resume_improvements=analysis_data.get("resume_improvements", []),
+        recommended_skills=analysis_data.get("recommended_skills", []),
+        interview_focus_areas=analysis_data.get("interview_focus_areas", []),
+        application_guidance=analysis_data.get("application_guidance", {}),
+        job_recommendations=analysis_data.get("job_recommendations", []),
+        provider_name=analysis_data.get("provider_name", provider.get_provider_name())
     )
     db.add(analysis_record)
     db.commit()
     db.refresh(analysis_record)
+
 
     return analysis_record
 

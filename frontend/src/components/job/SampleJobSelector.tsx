@@ -68,7 +68,7 @@ export const SampleJobSelector: React.FC<SampleJobSelectorProps> = ({ onSelect }
   return (
     <div className="space-y-2">
       <div className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-slate-400">
-        <Sparkles className="w-3.5 h-3.5 text-indigo-400" />
+        <Sparkles className="w-3.5 h-3.5 text-teal-400" />
         <span>Quick Test with Sample Roles:</span>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
@@ -77,13 +77,13 @@ export const SampleJobSelector: React.FC<SampleJobSelectorProps> = ({ onSelect }
             key={idx}
             type="button"
             onClick={() => onSelect(job)}
-            className="flex items-start gap-2.5 p-3 rounded-xl bg-slate-900/80 border border-slate-800 hover:border-indigo-500/50 hover:bg-slate-850 text-left transition-all group"
+            className="flex items-start gap-2.5 p-3 rounded-xl bg-[#13171a] border border-white/[0.08] hover:border-teal-500/50 hover:bg-[#181f24] text-left transition-all group"
           >
-            <div className="w-7 h-7 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 shrink-0 group-hover:scale-105 transition-transform mt-0.5">
+            <div className="w-7 h-7 rounded-lg bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 shrink-0 group-hover:scale-105 transition-transform mt-0.5">
               <Briefcase className="w-3.5 h-3.5" />
             </div>
             <div className="truncate">
-              <p className="text-xs font-semibold text-slate-200 group-hover:text-indigo-300 truncate">
+              <p className="text-xs font-semibold text-slate-200 group-hover:text-teal-300 truncate">
                 {job.title}
               </p>
               <p className="text-[11px] text-slate-400 truncate">{job.company}</p>

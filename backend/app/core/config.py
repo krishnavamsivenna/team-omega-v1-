@@ -30,8 +30,25 @@ class Settings(BaseSettings):
         "http://127.0.0.1:3000",
     ]
     
-    # AI Provider Mode: "baseline" (Level 1), "gemini" / "openai" (Level 2 ready)
+    # AI Provider Configuration
+    # Options: "gemini", "openai", "ollama", "baseline" (default fallback)
     AI_PROVIDER: str = os.getenv("AI_PROVIDER", "baseline")
+    
+    # Cloud LLM: Google Gemini
+    GEMINI_API_KEY: str | None = os.getenv("GEMINI_API_KEY")
+    GEMINI_MODEL: str = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+    
+    # Cloud LLM: OpenAI or OpenAI-Compatible (Groq, OpenRouter, vLLM)
+    OPENAI_API_KEY: str | None = os.getenv("OPENAI_API_KEY")
+    OPENAI_BASE_URL: str = os.getenv("OPENAI_BASE_URL", "https://api.openai.com/v1")
+    OPENAI_MODEL: str = os.getenv("OPENAI_MODEL", "gpt-4o")
+    
+    # Local LLM: Ollama
+    OLLAMA_BASE_URL: str = os.getenv("OLLAMA_BASE_URL", "http://localhost:11434")
+    OLLAMA_MODEL: str = os.getenv("OLLAMA_MODEL", "llama3")
+    
+    # AI Timeout
+    AI_TIMEOUT_SECONDS: int = int(os.getenv("AI_TIMEOUT_SECONDS", "45"))
 
     model_config = {"env_file": ".env", "extra": "allow"}
 

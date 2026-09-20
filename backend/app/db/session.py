@@ -51,5 +51,41 @@ def init_db():
     import app.models.user
     import app.models.resume
     import app.models.analysis
+    import app.models.interview
+    import app.models.roadmap
+    import app.models.job_opportunity
     Base.metadata.create_all(bind=engine)
+    try:
+        from sqlalchemy import inspect
+        inspector = inspect(engine)
+        tables = inspector.get_table_names()
+        with engine.connect() as conn:
+            if "analysis_results" in tables:
+                columns = [col["name"] for col in inspector.get_columns("analysis_results")]
+                new_cols = [
+                    ("resume_improvements", "JSON"),
+                    ("recommended_skills", "JSON"),
+                    ("interview_focus_areas", "JSON"),
+                    ("application_guidance", "JSON"),
+                    ("job_recommendations", "JSON"),
+                ]
+                for col_name, col_type in new_cols:
+                    if col_name not in columns:
+                        conn.execute(text(f"ALTER TABLE analysis_results ADD COLUMN {col_name} {col_type}"))
+            
+            if "resumes" in tables:
+                resume_cols = [col["name"] for col in inspector.get_columns("resumes")]
+                new_resume_cols = [
+                    ("is_primary", "INTEGER DEFAULT 0"),
+                    ("target_role", "VARCHAR"),
+                    ("version_tag", "VARCHAR DEFAULT 'v1.0'"),
+                ]
+                for col_name, col_type in new_resume_cols:
+                    if col_name not in resume_cols:
+                        conn.execute(text(f"ALTER TABLE resumes ADD COLUMN {col_name} {col_type}"))
+            conn.commit()
+    except Exception as e:
+        logger.warning(f"Column migration check note: {e}")
     logger.info("Database schema verified and tables initialized.")
+
+

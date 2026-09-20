@@ -22,11 +22,28 @@ class AnalysisResult(Base):
     keyword_analysis = Column(JSON, nullable=True)    # {found_keywords: [], missing_keywords: []}
     recommendations = Column(JSON, nullable=False)    # list of actionable advice items
     
+    # Level 2 Extended Intelligence Fields
+    resume_improvements = Column(JSON, nullable=True)
+    recommended_skills = Column(JSON, nullable=True)
+    interview_focus_areas = Column(JSON, nullable=True)
+    application_guidance = Column(JSON, nullable=True)
+    job_recommendations = Column(JSON, nullable=True)
+
     # Metadata on provider used
     provider_name = Column(String, default="Baseline NLP Engine (Level 1)")
     created_at = Column(DateTime, default=lambda: datetime.datetime.now(datetime.timezone.utc))
+
+    @property
+    def match_percentage(self) -> float:
+        return self.overall_score
+
+    @property
+    def matching_skills(self):
+        return self.matched_skills
 
     # Relationships
     user = relationship("User", back_populates="analyses")
     resume = relationship("Resume", back_populates="analyses")
     job_description = relationship("JobDescription", back_populates="analyses")
+    roadmaps = relationship("LearningRoadmap", back_populates="analysis")
+

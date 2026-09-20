@@ -62,7 +62,7 @@ export const LoginPage: React.FC = () => {
     <div className="min-h-[80vh] flex items-center justify-center px-4 py-12">
       <div className="w-full max-w-md space-y-6">
         <div className="text-center space-y-2">
-          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-indigo-600/15 border border-indigo-500/30 text-indigo-400 mb-2">
+          <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-teal-500/10 border border-teal-500/30 text-teal-400 mb-2">
             <Sparkles className="w-6 h-6" />
           </div>
           <h2 className="text-2xl font-bold text-white tracking-tight">Sign in to OMEGA</h2>
@@ -121,7 +121,7 @@ export const LoginPage: React.FC = () => {
                 <div className="w-full border-t border-slate-800" />
               </div>
               <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-slate-900 px-2 text-slate-500 font-medium">Or instant access</span>
+                <span className="bg-[#13171a] px-2 text-slate-500 font-medium">Or instant access</span>
               </div>
             </div>
 
@@ -140,7 +140,7 @@ export const LoginPage: React.FC = () => {
 
           <p className="mt-6 text-center text-xs text-slate-400">
             Don't have an account?{' '}
-            <Link to="/register" className="font-semibold text-indigo-400 hover:text-indigo-300">
+            <Link to="/register" className="font-semibold text-teal-400 hover:text-teal-300">
               Sign up free
             </Link>
           </p>

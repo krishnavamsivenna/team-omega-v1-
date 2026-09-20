@@ -50,6 +50,16 @@ class AnalysisResponse(BaseModel):
     keyword_analysis: Dict[str, Any]
     recommendations: List[RecommendationItem]
     provider_name: str
+    
+    # Level 2 Extended AI Intelligence Fields
+    match_percentage: Optional[float] = None
+    matching_skills: Optional[List[SkillItem]] = None
+    resume_improvements: List[Dict[str, Any]] = []
+    recommended_skills: List[Dict[str, Any]] = []
+    interview_focus_areas: List[str] = []
+    application_guidance: Dict[str, Any] = {}
+    job_recommendations: List[str] = []
+    
     created_at: datetime.datetime
 
     model_config = ConfigDict(from_attributes=True)

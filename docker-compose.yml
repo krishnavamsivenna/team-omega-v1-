@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:16-alpine
+    container_name: omega-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-omega}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-omega_secure_password}
+      POSTGRES_DB: ${POSTGRES_DB:-omega_db}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-omega} -d ${POSTGRES_DB:-omega_db}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - omega-network
+
+  # FastAPI Backend Service
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: omega-backend
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql://${POSTGRES_USER:-omega}:${POSTGRES_PASSWORD:-omega_secure_password}@postgres:5432/${POSTGRES_DB:-omega_db}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY:-omega_hackathon_super_secret_jwt_key_2026}
+      AI_PROVIDER: ${AI_PROVIDER:-baseline}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+      GEMINI_API_KEY: ${GEMINI_API_KEY:-}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL:-http://host.docker.internal:11434}
+      OLLAMA_MODEL: ${OLLAMA_MODEL:-llama3}
+      ENVIRONMENT: production
+    ports:
+      - "8000:8000"
+    volumes:
+      - backend_uploads:/app/uploads
+    networks:
+      - omega-network
+
+  # React Frontend Service
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: omega-frontend
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - "3000:80"
+    networks:
+      - omega-network
+
+volumes:
+  postgres_data:
+    driver: local
+  backend_uploads:
+    driver: local
+
+networks:
+  omega-network:
+    driver: bridge

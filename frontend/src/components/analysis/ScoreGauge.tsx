@@ -21,9 +21,9 @@ export const ScoreGauge: React.FC<ScoreGaugeProps> = ({ score, size = 180 }) => 
     badgeText = 'Exceptional Fit';
     badgeColor = 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30';
   } else if (clampedScore >= 70) {
-    strokeColor = '#6366f1'; // indigo-500
+    strokeColor = '#14b8a6'; // teal-500
     badgeText = 'Strong Match';
-    badgeColor = 'bg-indigo-500/10 text-indigo-400 border-indigo-500/30';
+    badgeColor = 'bg-teal-500/10 text-teal-400 border-teal-500/30';
   } else if (clampedScore >= 50) {
     strokeColor = '#f59e0b'; // amber-500
     badgeText = 'Moderate Fit';

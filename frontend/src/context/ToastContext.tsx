@@ -40,14 +40,14 @@ export const ToastProvider: React.FC<{ children: React.ReactNode }> = ({ childre
             success: <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />,
             error: <AlertCircle className="w-5 h-5 text-rose-400 shrink-0" />,
             warning: <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0" />,
-            info: <Info className="w-5 h-5 text-indigo-400 shrink-0" />,
+            info: <Info className="w-5 h-5 text-teal-400 shrink-0" />,
           };
 
           const borders = {
-            success: 'border-emerald-500/30 bg-slate-900/95 text-emerald-200',
-            error: 'border-rose-500/30 bg-slate-900/95 text-rose-200',
-            warning: 'border-amber-500/30 bg-slate-900/95 text-amber-200',
-            info: 'border-indigo-500/30 bg-slate-900/95 text-indigo-200',
+            success: 'border-emerald-500/30 bg-[#13171a]/95 text-emerald-200',
+            error: 'border-rose-500/30 bg-[#13171a]/95 text-rose-200',
+            warning: 'border-amber-500/30 bg-[#13171a]/95 text-amber-200',
+            info: 'border-teal-500/30 bg-[#13171a]/95 text-teal-200',
           };
 
           return (

@@ -130,7 +130,7 @@ export const AnalyzePage: React.FC = () => {
           <ArrowLeft className="w-3.5 h-3.5" />
           Back to Dashboard
         </Link>
-        <div className="flex items-center gap-2 text-xs text-indigo-400 font-medium bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">
+        <div className="flex items-center gap-2 text-xs text-teal-400 font-medium bg-teal-500/10 px-3 py-1 rounded-full border border-teal-500/20">
           <Sparkles className="w-3.5 h-3.5" />
           Level 1 Matching Engine
         </div>
@@ -149,7 +149,7 @@ export const AnalyzePage: React.FC = () => {
         <Card className="space-y-5">
           <div className="flex items-center justify-between border-b border-slate-800 pb-3">
             <div className="flex items-center gap-2">
-              <span className="w-6 h-6 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">
+              <span className="w-6 h-6 rounded-full bg-teal-500 text-slate-950 font-bold text-xs flex items-center justify-center">
                 1
               </span>
               <h3 className="text-base font-bold text-white">Select or Upload Resume</h3>
@@ -198,7 +198,7 @@ export const AnalyzePage: React.FC = () => {
         {/* Step 2: Target Job Description */}
         <Card className="space-y-5">
           <div className="flex items-center gap-2 border-b border-slate-800 pb-3">
-            <span className="w-6 h-6 rounded-full bg-indigo-600 text-white font-bold text-xs flex items-center justify-center">
+            <span className="w-6 h-6 rounded-full bg-teal-500 text-slate-950 font-bold text-xs flex items-center justify-center">
               2
             </span>
             <h3 className="text-base font-bold text-white">Target Job Description</h3>
@@ -218,10 +218,10 @@ export const AnalyzePage: React.FC = () => {
         </Card>
 
         {/* Step 3: Execution CTA */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl bg-slate-900 border border-indigo-500/30 shadow-xl shadow-indigo-500/5">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 p-6 rounded-2xl bg-[#13171a] border border-teal-500/30 shadow-xl shadow-teal-500/5">
           <div>
             <h4 className="text-base font-bold text-white flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-indigo-400" />
+              <Sparkles className="w-4 h-4 text-teal-400" />
               Ready to execute match evaluation?
             </h4>
             <p className="text-xs text-slate-400 mt-0.5">
@@ -234,7 +234,7 @@ export const AnalyzePage: React.FC = () => {
             variant="primary"
             onClick={handleStartAnalysis}
             isLoading={isAnalyzing}
-            icon={<Play className="w-4 h-4 fill-white" />}
+            icon={<Play className="w-4 h-4 fill-slate-950" />}
             className="w-full sm:w-auto shrink-0"
           >
             {isAnalyzing ? 'Analyzing Alignment...' : 'Run Match Analysis'}
@@ -245,20 +245,20 @@ export const AnalyzePage: React.FC = () => {
       {/* Analysis In-Progress Modal Overlay */}
       {isAnalyzing && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 backdrop-blur-md p-4">
-          <div className="max-w-md w-full p-8 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl text-center space-y-6">
-            <div className="w-16 h-16 rounded-3xl bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center mx-auto text-indigo-400 animate-pulse">
+          <div className="max-w-md w-full p-8 rounded-2xl bg-[#13171a] border border-teal-500/20 shadow-2xl text-center space-y-6">
+            <div className="w-16 h-16 rounded-3xl bg-teal-500/15 border border-teal-500/40 flex items-center justify-center mx-auto text-teal-400 animate-pulse">
               <Sparkles className="w-8 h-8" />
             </div>
 
             <div className="space-y-2">
               <h3 className="text-xl font-bold text-white">Analyzing Your Match</h3>
-              <p className="text-xs text-indigo-300 font-medium min-h-[32px] transition-all">
+              <p className="text-xs text-teal-300 font-medium min-h-[32px] transition-all">
                 {analysisPhase}
               </p>
             </div>
 
             <div className="w-full bg-slate-800 rounded-full h-1.5 overflow-hidden">
-              <div className="h-full bg-gradient-to-r from-indigo-500 to-violet-500 rounded-full animate-pulse-glow" style={{ width: '100%' }} />
+              <div className="h-full bg-gradient-to-r from-teal-500 to-emerald-400 rounded-full animate-pulse-glow" style={{ width: '100%' }} />
             </div>
 
             <p className="text-[11px] text-slate-500">

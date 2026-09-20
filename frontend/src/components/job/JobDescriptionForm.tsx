@@ -75,7 +75,7 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
             <select
               value={experienceLevel}
               onChange={(e) => setExperienceLevel(e.target.value)}
-              className="w-full rounded-xl bg-slate-900/90 border border-slate-800 focus:border-indigo-500 focus:ring-indigo-500/20 text-slate-100 text-sm pl-10 pr-3.5 py-2.5 transition-all duration-200 focus:outline-none focus:ring-2"
+              className="w-full rounded-xl bg-slate-900/90 dark:bg-[#111518] border border-slate-800 focus:border-teal-400 focus:ring-teal-400/20 text-slate-100 text-sm pl-10 pr-3.5 py-2.5 transition-all duration-200 focus:outline-none focus:ring-2"
             >
               <option value="Junior / Entry (0-2 yrs)">Junior / Entry (0-2 yrs)</option>
               <option value="Mid-Level (2-4 yrs)">Mid-Level (2-4 yrs)</option>
@@ -101,10 +101,10 @@ export const JobDescriptionForm: React.FC<JobDescriptionFormProps> = ({
             value={jobDescription}
             onChange={(e) => setJobDescription(e.target.value)}
             placeholder="Paste the complete job requirements, responsibilities, and target qualifications here..."
-            className={`w-full rounded-xl bg-slate-900/90 border ${
+            className={`w-full rounded-xl bg-slate-900/90 dark:bg-[#111518] border ${
               errors.jobDescription
                 ? 'border-rose-500 focus:border-rose-500 focus:ring-rose-500/20'
-                : 'border-slate-800 focus:border-indigo-500 focus:ring-indigo-500/20'
+                : 'border-slate-800 focus:border-teal-400 focus:ring-teal-400/20'
             } text-slate-100 placeholder-slate-500 text-sm p-3.5 transition-all duration-200 focus:outline-none focus:ring-2`}
           />
           {errors.jobDescription && (

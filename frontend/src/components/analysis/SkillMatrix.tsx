@@ -75,11 +75,11 @@ export const SkillMatrix: React.FC<SkillMatrixProps> = ({
             onClick={() => setActiveTab('bonus')}
             className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold tracking-wide transition-all ${
               activeTab === 'bonus'
-                ? 'bg-indigo-950/40 text-indigo-300 border border-indigo-500/30'
+                ? 'bg-teal-950/40 text-teal-300 border border-teal-500/30'
                 : 'text-slate-400 hover:text-slate-200'
             }`}
           >
-            <PlusCircle className="w-3.5 h-3.5 text-indigo-400" />
+            <PlusCircle className="w-3.5 h-3.5 text-teal-400" />
             Bonus Strengths ({bonusSkills.length})
           </button>
         </div>
@@ -90,7 +90,7 @@ export const SkillMatrix: React.FC<SkillMatrixProps> = ({
           <select
             value={selectedCategory}
             onChange={(e) => setSelectedCategory(e.target.value)}
-            className="text-xs bg-slate-900 border border-slate-800 rounded-lg px-2.5 py-1 text-slate-300 focus:outline-none focus:border-indigo-500"
+            className="text-xs bg-[#0d1114] border border-white/[0.08] rounded-lg px-2.5 py-1 text-slate-300 focus:outline-none focus:border-teal-400"
           >
             {categories.map((cat) => (
               <option key={cat} value={cat}>
@@ -160,7 +160,7 @@ export const SkillMatrix: React.FC<SkillMatrixProps> = ({
         {(activeTab === 'all' || activeTab === 'bonus') && filteredBonus.length > 0 && (
           <div className="space-y-2.5">
             <div className="flex items-center justify-between">
-              <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-400 flex items-center gap-2">
+              <h4 className="text-xs font-bold uppercase tracking-wider text-teal-400 flex items-center gap-2">
                 <Sparkles className="w-4 h-4" />
                 Additional Strengths ({filteredBonus.length})
               </h4>
@@ -168,7 +168,7 @@ export const SkillMatrix: React.FC<SkillMatrixProps> = ({
             </div>
             <div className="flex flex-wrap gap-2">
               {filteredBonus.map((skill, idx) => (
-                <Badge key={idx} variant="purple" size="md">
+                <Badge key={idx} variant="teal" size="md">
                   {skill.name} <span className="text-[10px] text-slate-400">({skill.category})</span>
                 </Badge>
               ))}

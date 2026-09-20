@@ -24,9 +24,17 @@ class ResumeResponse(BaseModel):
     file_size: int
     raw_text: str
     parsed_data: Optional[Dict[str, Any]] = None
+    is_primary: Optional[int] = 0
+    target_role: Optional[str] = None
+    version_tag: Optional[str] = "v1.0"
     created_at: datetime.datetime
 
     model_config = ConfigDict(from_attributes=True)
+
+class ResumeMetadataUpdate(BaseModel):
+    target_role: Optional[str] = None
+    version_tag: Optional[str] = None
+
 
 class JobDescriptionCreate(BaseModel):
     title: str

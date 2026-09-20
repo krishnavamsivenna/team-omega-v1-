@@ -20,7 +20,7 @@ export const RecommendationsList: React.FC<RecommendationsListProps> = ({ recomm
       case 'skill_gap':
         return <Target className="w-4 h-4 text-rose-400" />;
       case 'ats_format':
-        return <FileText className="w-4 h-4 text-indigo-400" />;
+        return <FileText className="w-4 h-4 text-teal-400" />;
       default:
         return <Zap className="w-4 h-4 text-amber-400" />;
     }
@@ -33,7 +33,7 @@ export const RecommendationsList: React.FC<RecommendationsListProps> = ({ recomm
       case 'Medium Impact':
         return 'bg-amber-500/10 text-amber-400 border-amber-500/30';
       default:
-        return 'bg-indigo-500/10 text-indigo-400 border-indigo-500/30';
+        return 'bg-teal-500/10 text-teal-400 border-teal-500/30';
     }
   };
 
@@ -51,7 +51,7 @@ export const RecommendationsList: React.FC<RecommendationsListProps> = ({ recomm
         {recommendations.map((rec, idx) => (
           <div
             key={idx}
-            className="p-4 rounded-xl bg-slate-900/50 border border-slate-800 hover:border-slate-700/80 transition-all flex flex-col sm:flex-row sm:items-start justify-between gap-3"
+            className="p-4 rounded-xl bg-slate-900/50 dark:bg-[#111518] border border-slate-800 hover:border-teal-500/30 hover:bg-[#13171a] transition-all flex flex-col sm:flex-row sm:items-start justify-between gap-3"
           >
             <div className="flex items-start gap-3">
               <div className="p-2 rounded-xl bg-slate-800/80 border border-slate-700/50 shrink-0 mt-0.5">

@@ -97,7 +97,7 @@ export const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ onParsed, select
           onClick={() => setMode('upload')}
           className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all ${
             mode === 'upload'
-              ? 'bg-indigo-600/20 text-indigo-300 border border-indigo-500/30'
+              ? 'bg-teal-500/10 text-teal-300 border border-teal-500/30'
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
@@ -109,7 +109,7 @@ export const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ onParsed, select
           onClick={() => setMode('paste')}
           className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wider transition-all ${
             mode === 'paste'
-              ? 'bg-indigo-600/20 text-indigo-300 border border-indigo-500/30'
+              ? 'bg-teal-500/10 text-teal-300 border border-teal-500/30'
               : 'text-slate-400 hover:text-slate-200'
           }`}
         >
@@ -126,8 +126,8 @@ export const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ onParsed, select
           onClick={() => !isUploading && fileInputRef.current?.click()}
           className={`relative border-2 border-dashed rounded-2xl p-8 flex flex-col items-center justify-center text-center cursor-pointer transition-all duration-200 ${
             isDragging
-              ? 'border-indigo-500 bg-indigo-950/20 scale-[1.01]'
-              : 'border-slate-800 hover:border-slate-700 bg-slate-900/40 hover:bg-slate-900/60'
+              ? 'border-teal-400 bg-teal-500/10 scale-[1.01]'
+              : 'border-slate-800 hover:border-teal-500/30 bg-slate-900/40 dark:bg-[#111518] hover:bg-slate-900/60 dark:hover:bg-[#13171a]'
           } ${isUploading ? 'pointer-events-none opacity-75' : ''}`}
         >
           <input
@@ -138,9 +138,9 @@ export const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ onParsed, select
             className="hidden"
           />
 
-          <div className="w-14 h-14 rounded-2xl bg-indigo-600/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-4 shadow-inner">
+          <div className="w-14 h-14 rounded-2xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center text-teal-400 mb-4 shadow-inner">
             {isUploading ? (
-              <FileCode className="w-7 h-7 animate-pulse text-indigo-300" />
+              <FileCode className="w-7 h-7 animate-pulse text-teal-300" />
             ) : (
               <UploadCloud className="w-7 h-7" />
             )}
@@ -174,7 +174,7 @@ export const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ onParsed, select
               placeholder="Resume Name / Headline (e.g., Full Stack Engineer 2026)"
               value={pastedTitle}
               onChange={(e) => setPastedTitle(e.target.value)}
-              className="w-full text-sm rounded-xl bg-slate-900 border border-slate-800 px-3.5 py-2 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
+              className="w-full text-sm rounded-xl bg-slate-900 dark:bg-[#0d1114] border border-slate-800 px-3.5 py-2 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-400/20 focus:border-teal-400"
             />
           </div>
           <div>
@@ -183,7 +183,7 @@ export const ResumeDropzone: React.FC<ResumeDropzoneProps> = ({ onParsed, select
               placeholder="Paste the raw text of your resume here (Summary, Skills, Experience, Education)..."
               value={pastedText}
               onChange={(e) => setPastedText(e.target.value)}
-              className="w-full text-sm rounded-xl bg-slate-900 border border-slate-800 p-3.5 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 font-mono"
+              className="w-full text-sm rounded-xl bg-slate-900 dark:bg-[#0d1114] border border-slate-800 p-3.5 text-slate-100 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-400/20 focus:border-teal-400 font-mono"
             />
           </div>
           <div className="flex items-center justify-between text-xs text-slate-400">
