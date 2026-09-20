@@ -128,6 +128,13 @@ cd ..
 Ensure the setup is 100% sound by verifying the test suite and frontend build.
 
 #### 1. Backend Test Suite (20 Tests):
+* **Windows Command Prompt (`cmd`):**
+  ```cmd
+  cd backend
+  set PYTHONPATH=.
+  ..\.venv\Scripts\python.exe -m pytest tests/ -v
+  cd ..
+  ```
 * **Windows PowerShell:**
   ```powershell
   cd backend
@@ -161,6 +168,12 @@ cd ..
 Open **two separate terminal windows** inside the root `omega/` directory:
 
 #### Terminal 1: FastAPI Backend (Port 8000)
+* **Windows Command Prompt (`cmd`):**
+  ```cmd
+  cd backend
+  set PYTHONPATH=.
+  ..\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+  ```
 * **Windows PowerShell:**
   ```powershell
   cd backend

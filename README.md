@@ -170,11 +170,18 @@ docker-compose up --build -d
 ## 💻 Local Development Setup
 
 ### 1. Start Backend (Port 8000)
-```powershell
-cd backend
-$env:PYTHONPATH="."
-..\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
-```
+* **Command Prompt (`cmd`):**
+  ```cmd
+  cd backend
+  set PYTHONPATH=.
+  ..\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+  ```
+* **PowerShell:**
+  ```powershell
+  cd backend
+  $env:PYTHONPATH="."
+  ..\.venv\Scripts\python.exe -m uvicorn app.main:app --host 127.0.0.1 --port 8000 --reload
+  ```
 
 ### 2. Start Frontend (Port 5173)
 ```powershell
